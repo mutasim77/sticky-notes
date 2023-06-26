@@ -4,20 +4,23 @@ import { Card } from '@mui/material';
 const style = {
     width: '250px',
     height: '250px',
-    backgroundColor: '#a869d8',
-    color: '#fff',
+    // backgroundColor: '#a869d8',
+    color: '#000',
     padding: '15px',
     overflowY: 'scroll'
 }
 
 interface NotesListProps {
-    children: React.ReactNode
+    children: React.ReactNode,
+    color: string
 }
 
-const Note: React.FC<NotesListProps> = ({ children }) => {
+const Note: React.FC<NotesListProps> = ({ children, color }) => {
+    console.log(color);
+
     return (
-        <li style={{ fontFamily: 'Gloria Hallelujah, cursive', fontWeight: '700' }}>
-            <Card sx={style} variant="outlined">{children}</Card>
+        <li>
+            <Card sx={{ bgcolor: color, ...style }} variant="outlined">{children}</Card>
         </li>
     )
 }

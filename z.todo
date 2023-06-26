@@ -1,0 +1,6 @@
+navbar color: #8881d8
+navbar high color: #6961c0
+
+using localStorage to store data and delete; 
+write my own custom hook for localStorage;
+

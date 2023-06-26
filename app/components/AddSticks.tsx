@@ -1,12 +1,16 @@
 "use client"
 
-import { Fragment, useState, FormEventHandler } from "react";
+import { Fragment, useState } from "react";
 import { TextField, Button } from '@mui/material';
+import { Typography, Textarea } from '@mui/joy';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CustomModal from "./CustomModal";
+import RadioSelect from './RadioSelect';
 
 const AddSticks = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const [newStickValue, setnewStickValue] = useState<string>('');
+    const [newStickValue, setNewStickValue] = useState<string>('');
+    const [newTitleValue, setNewTitleValue] = useState<string>('');
 
     return (
         <Fragment>
@@ -16,19 +20,33 @@ const AddSticks = () => {
                 style={{ backgroundColor: '#1976d2' }}
                 className="flex m-auto mt-10"
             >
-                Add new task
+                <AddCircleOutlineOutlinedIcon sx={{ mr: 1 }} /> Add new note
             </Button>
 
             <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
                 <form className="flex flex-col gap-5">
+                    <Typography color="info" level="h4" className="text-center">New Note</Typography>
                     <TextField
                         id="outlined-basic"
-                        label="Your Note"
+                        label="Title"
+                        variant="outlined"
+                        value={newTitleValue}
+                        onChange={(e) => setNewTitleValue(e.target.value)}
+                    />
+                    <TextField
+                        id="outlined-basic"
+                        label="Note"
                         variant="outlined"
                         value={newStickValue}
-                        onChange={(e) => setnewStickValue(e.target.value)}
+                        onChange={(e) => setNewStickValue(e.target.value)}
                     />
-                    <Button variant="contained" style={{ backgroundColor: '#1976d2' }}>Submit</Button>
+
+                    <Textarea
+                        placeholder="Write you note"
+                        sx={{ overflow: 'scroll', height: '100px', bgColor: 'red' }}
+                    />
+                    <RadioSelect />
+                    <Button variant="contained" style={{ backgroundColor: '#1976d2' }}>Add</Button>
                 </form>
             </CustomModal>
         </Fragment>
