@@ -7,7 +7,7 @@
 1. using localStorage to store data and delete; 
 2. write my own custom hook for localStorage;
 3. Add Date for each time -> take current time from new Date();
-
+4. Wrie pretty Readme file 
 
 -----------------Bags-------------------
 1. Do validation while adding new Note;
@@ -19,3 +19,4 @@
 2. Edit Button;
 3. Favorite Button;
 4. Search Bar (search qutoes by title);
+5. Filter Bar -> filter by catergory;

@@ -17,8 +17,6 @@ interface NotesListProps {
 }
 
 const Note: React.FC<NotesListProps> = ({ children, color }) => {
-    console.log(color);
-
     return (
         <li>
             <Card sx={{ bgcolor: color, ...style }} variant="outlined">{children}</Card>

@@ -8,18 +8,18 @@ import CustomModal from "./CustomModal";
 import RadioSelect from './RadioSelect';
 import { useRouter } from 'next/navigation';
 import { notes } from '../../constants/index.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddSticks = () => {
     const router = useRouter();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [newNoteValue, setNewNoteValue] = useState<string>('');
     const [newTitleValue, setNewTitleValue] = useState<string>('');
+    const [newColorValue, setNewColorValue] = useState<string>('');
 
     const handleSubmitNewNote: FormEventHandler<HTMLFormElement> = (e) => {
-
         e.preventDefault();
-        // add to localStorage
-        notes.push({ title: newTitleValue, note: newNoteValue });
+        notes.push({ id: uuidv4(), title: newTitleValue, note: newNoteValue, color: newColorValue });
 
         setNewNoteValue('');
         setNewTitleValue('');
@@ -61,7 +61,7 @@ const AddSticks = () => {
                         placeholder="Write you note"
                         sx={{ overflow: 'scroll', height: '100px', bgColor: 'red' }}
                     />
-                    <RadioSelect />
+                    <RadioSelect setNewColorValue={setNewColorValue} />
                     <Button type="submit" variant="contained" style={{ backgroundColor: '#1976d2' }}>Add</Button>
                 </form>
             </CustomModal>

@@ -1,7 +1,11 @@
 import { RadioGroup, Sheet, Radio, Box, FormLabel } from '@mui/joy'
 import Done from '@mui/icons-material/Done';
 
-const RadioSelect = () => {
+type RadioSelectProps = {
+    setNewColorValue: (color: string) => string | void
+}
+
+const RadioSelect: React.FC<RadioSelectProps> = ({ setNewColorValue }) => {
     return (
         <>
             <Box sx={{}}>
@@ -43,6 +47,7 @@ const RadioSelect = () => {
                                 overlay
                                 variant="solid"
                                 checkedIcon={<Done fontSize="small" />}
+                                onFocus={() => setNewColorValue(color)}
                                 value={color}
                                 slotProps={{
                                     input: { 'aria-label': color },
