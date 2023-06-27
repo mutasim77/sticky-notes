@@ -1,16 +1,32 @@
 "use client"
 
-import { Fragment, useState } from "react";
+import { Fragment, useState, FormEventHandler } from "react";
 import { TextField, Button } from '@mui/material';
 import { Typography, Textarea } from '@mui/joy';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CustomModal from "./CustomModal";
 import RadioSelect from './RadioSelect';
+import { useRouter } from 'next/navigation';
+import { notes } from '../../constants/index.js';
 
 const AddSticks = () => {
+    const router = useRouter();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const [newStickValue, setNewStickValue] = useState<string>('');
+    const [newNoteValue, setNewNoteValue] = useState<string>('');
     const [newTitleValue, setNewTitleValue] = useState<string>('');
+
+    const handleSubmitNewNote: FormEventHandler<HTMLFormElement> = (e) => {
+
+        e.preventDefault();
+        // add to localStorage
+        notes.push({ title: newTitleValue, note: newNoteValue });
+
+        setNewNoteValue('');
+        setNewTitleValue('');
+        setModalOpen(false);
+
+        router.refresh();
+    }
 
     return (
         <Fragment>
@@ -24,7 +40,7 @@ const AddSticks = () => {
             </Button>
 
             <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
-                <form className="flex flex-col gap-5">
+                <form className="flex flex-col gap-5" onSubmit={handleSubmitNewNote}>
                     <Typography color="info" level="h4" className="text-center">New Note</Typography>
                     <TextField
                         id="outlined-basic"
@@ -37,8 +53,8 @@ const AddSticks = () => {
                         id="outlined-basic"
                         label="Note"
                         variant="outlined"
-                        value={newStickValue}
-                        onChange={(e) => setNewStickValue(e.target.value)}
+                        value={newNoteValue}
+                        onChange={(e) => setNewNoteValue(e.target.value)}
                     />
 
                     <Textarea
@@ -46,7 +62,7 @@ const AddSticks = () => {
                         sx={{ overflow: 'scroll', height: '100px', bgColor: 'red' }}
                     />
                     <RadioSelect />
-                    <Button variant="contained" style={{ backgroundColor: '#1976d2' }}>Add</Button>
+                    <Button type="submit" variant="contained" style={{ backgroundColor: '#1976d2' }}>Add</Button>
                 </form>
             </CustomModal>
         </Fragment>

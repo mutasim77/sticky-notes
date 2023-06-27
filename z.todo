@@ -1,6 +1,21 @@
-navbar color: #8881d8
-navbar high color: #6961c0
+---------------constants---------------
+1. navbar color: #8881d8
+2. navbar high color: #6961c0
 
-using localStorage to store data and delete; 
-write my own custom hook for localStorage;
 
+-----------------Do it later------------------------
+1. using localStorage to store data and delete; 
+2. write my own custom hook for localStorage;
+3. Add Date for each time -> take current time from new Date();
+
+
+-----------------Bags-------------------
+1. Do validation while adding new Note;
+2. thing about how to add colors -> for each note separately or no need;
+
+
+-----------------Features-------------------
+1. Delete Button;
+2. Edit Button;
+3. Favorite Button;
+4. Search Bar (search qutoes by title);

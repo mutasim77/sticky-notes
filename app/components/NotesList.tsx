@@ -9,8 +9,8 @@ const NotesList = () => {
         <ul className="notes-list flex gap-5 mt-10 flex-wrap justify-center">
             {notes.map((note, inx) => (
                 <Note key={inx} color={colors[inx]}>
-                    <Typography level="h4" sx={{ textAlign: 'center', mb: 1 }} noWrap>Test Note</Typography>
-                    {note}
+                    <Typography level="h4" sx={{ textAlign: 'center', mb: 1 }} noWrap>{note.title}</Typography>
+                    {note.note}
                 </Note>
             ))}
         </ul>
