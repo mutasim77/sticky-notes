@@ -46,7 +46,7 @@ const RadioSelect: React.FC<RadioSelectProps> = ({ setNewColorValue }) => {
                             <Radio
                                 overlay
                                 variant="solid"
-                                checkedIcon={<Done fontSize="small" />}
+                                checkedIcon={<Done fontSize="small" sx={{ color: '#000' }} />}
                                 onFocus={() => setNewColorValue(color)}
                                 value={color}
                                 slotProps={{

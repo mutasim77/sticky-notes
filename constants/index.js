@@ -2,7 +2,7 @@ export const notes = [
     {
         id: '1',
         title: 'Title Example',
-        note: 'Hello',
+        note: '1.Hello',
         color: '#ffcf7c'
     },
     {
