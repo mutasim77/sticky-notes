@@ -11,15 +11,24 @@ const style = {
 }
 
 interface NotesListProps {
-    children: React.ReactNode,
     color: string,
-    isOdd: number
+    isOdd: number,
+    children: React.ReactNode,
 }
 
 const Note: React.FC<NotesListProps> = ({ children, color, isOdd }) => {
     return (
-        <li style={isOdd % 2 === 0 ? { transform: 'rotate(-6deg)' } : { transform: 'rotate(3deg)' }}>
-            <Card sx={{ bgcolor: color, ...style }} variant="outlined">{children}</Card>
+        <li
+            style={isOdd % 2 === 0 ?
+                { transform: 'rotate(-6deg)' } :
+                { transform: 'rotate(3deg)' }}
+        >
+            <Card
+                sx={{ bgcolor: color, ...style }}
+                variant="outlined"
+            >
+                {children}
+            </Card>
         </li>
     )
 }

@@ -1,3 +1,4 @@
+// just to test app
 export const notes = [
     {
         id: '1',

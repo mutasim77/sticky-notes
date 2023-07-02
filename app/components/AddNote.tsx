@@ -2,14 +2,14 @@
 
 import { Fragment, useState, FormEventHandler } from "react";
 import { TextField, Button } from '@mui/material';
-import { Typography, Textarea } from '@mui/joy';
+import { Typography } from '@mui/joy';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import CustomModal from "./CustomModal";
 import RadioSelect from './RadioSelect';
-import useLocalStorage from "../hooks/useLocalStorage";
 import { useRouter } from 'next/navigation';
-import { notes } from '../../constants/index.js';
 import { v4 as uuidv4 } from 'uuid';
+import { addNotes } from '../../services/localStorage';
+import { currentDate } from '../../utils/index';
 
 const AddNote = () => {
     const router = useRouter();
@@ -17,22 +17,27 @@ const AddNote = () => {
     const [newNoteValue, setNewNoteValue] = useState<string>('');
     const [newTitleValue, setNewTitleValue] = useState<string>('');
     const [newColorValue, setNewColorValue] = useState<string>('');
-    const [storeData, setStoreData] = useLocalStorage('data', []);
 
     //! Add New Note;
     const handleSubmitNewNote: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
-        setStoreData([{ id: uuidv4(), title: newTitleValue, note: newNoteValue, color: newColorValue }]);
-        // setStoreData()
+
+        addNotes({
+            id: uuidv4(),
+            date: currentDate(),
+            title: newTitleValue,
+            note: newNoteValue,
+            color: newColorValue
+        })
 
         setNewNoteValue('');
         setNewTitleValue('');
         setModalOpen(false);
 
         router.refresh();
+        // location.reload()
     }
 
-    console.log(storeData);
     return (
         <Fragment>
             <Button

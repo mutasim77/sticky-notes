@@ -4,14 +4,15 @@
 
 
 -----------------Do it later------------------------
-1. using localStorage to store data and delete; 
-2. write my own custom hook for localStorage;
-3. Add Date for each time -> take current time from new Date();
+DONE! 1. use localStorage to store data and delete; 
+DONE! 2. write my own custom hook for localStorage;
+DONE! 3. Add Date for each time -> take current time from new Date();
 4. Wrie pretty Readme file 
+5. Rewrite localStorage
 
 -----------------Bags-------------------
 1. Do validation while adding new Note;
-2. thing about how to add colors -> for each note separately or no need;
+DONE! 2. think about how to add colors -> for each note separately or no need;  
 
 
 -----------------Features-------------------
