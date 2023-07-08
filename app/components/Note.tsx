@@ -12,14 +12,14 @@ const style = {
 
 interface NotesListProps {
     color: string,
-    isOdd: number,
+    isOdd: boolean,
     children: React.ReactNode,
 }
 
 const Note: React.FC<NotesListProps> = ({ children, color, isOdd }) => {
     return (
         <li
-            style={isOdd % 2 === 0 ?
+            style={isOdd ?
                 { transform: 'rotate(-6deg)' } :
                 { transform: 'rotate(3deg)' }}
         >

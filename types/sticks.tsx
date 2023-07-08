@@ -1,4 +1,7 @@
-export interface ISticks {
+export interface INotes {
     id: string,
-    text: string,
+    date: string,
+    title: string,
+    note: string,
+    color: string
 }

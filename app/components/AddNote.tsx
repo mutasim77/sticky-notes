@@ -1,6 +1,6 @@
 "use client"
 
-import { Fragment, useState, FormEventHandler } from "react";
+import { Fragment, useState, FormEventHandler, useEffect } from "react";
 import { TextField, Button } from '@mui/material';
 import { Typography } from '@mui/joy';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
@@ -8,8 +8,9 @@ import CustomModal from "./CustomModal";
 import RadioSelect from './RadioSelect';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
-import { addNotes } from '../../services/localStorage';
+import { addNotes, getListNotes } from '../../services/localStorage';
 import { currentDate } from '../../utils/index';
+import NotesList from "./NotesList";
 
 const AddNote = () => {
     const router = useRouter();
@@ -17,6 +18,7 @@ const AddNote = () => {
     const [newNoteValue, setNewNoteValue] = useState<string>('');
     const [newTitleValue, setNewTitleValue] = useState<string>('');
     const [newColorValue, setNewColorValue] = useState<string>('');
+    const [notes, setNotes] = useState([]);
 
     //! Add New Note;
     const handleSubmitNewNote: FormEventHandler<HTMLFormElement> = (e) => {
@@ -30,13 +32,19 @@ const AddNote = () => {
             color: newColorValue
         })
 
+        setNotes(getListNotes());
+
         setNewNoteValue('');
         setNewTitleValue('');
         setModalOpen(false);
 
         router.refresh();
-        // location.reload()
     }
+
+    useEffect(() => {
+        setNotes(getListNotes());
+    }, []);
+
 
     return (
         <Fragment>
@@ -72,6 +80,8 @@ const AddNote = () => {
                     <Button type="submit" variant="contained" style={{ backgroundColor: '#1976d2' }}>Add</Button>
                 </form>
             </CustomModal>
+
+            <NotesList notes={notes} />
         </Fragment>
 
     )
