@@ -3,22 +3,26 @@
 import { Fragment, useState, FormEventHandler, useEffect } from "react";
 import { TextField, Button } from '@mui/material';
 import { Typography } from '@mui/joy';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import CustomModal from "./CustomModal";
-import RadioSelect from './RadioSelect';
-import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import { addNotes, getListNotes } from '../../services/localStorage';
 import { currentDate } from '../../utils/index';
-import NotesList from "./NotesList";
+import { INotes } from '../../types/sticks';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import CustomModal from "./UI/CustomModal";
+import RadioSelect from './UI/RadioSelect';
+import CategorySelect from "./UI/CategorySelect";
 
-const AddNote = () => {
-    const router = useRouter();
+interface NotesListProps {
+    notes: INotes[];
+    setNotes: (notes: any) => any | void
+}
+
+const AddNote: React.FC<NotesListProps> = ({ notes, setNotes }) => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [newNoteValue, setNewNoteValue] = useState<string>('');
     const [newTitleValue, setNewTitleValue] = useState<string>('');
     const [newColorValue, setNewColorValue] = useState<string>('');
-    const [notes, setNotes] = useState([]);
+    const [newCategory, setNewCategory] = useState<string>('');
 
     //! Add New Note;
     const handleSubmitNewNote: FormEventHandler<HTMLFormElement> = (e) => {
@@ -29,7 +33,8 @@ const AddNote = () => {
             date: currentDate(),
             title: newTitleValue,
             note: newNoteValue,
-            color: newColorValue
+            color: newColorValue,
+            category: newCategory
         })
 
         setNotes(getListNotes());
@@ -37,24 +42,17 @@ const AddNote = () => {
         setNewNoteValue('');
         setNewTitleValue('');
         setModalOpen(false);
-
-        router.refresh();
     }
-
-    useEffect(() => {
-        setNotes(getListNotes());
-    }, []);
-
 
     return (
         <Fragment>
             <Button
                 onClick={() => setModalOpen(!modalOpen)}
                 variant="contained"
-                style={{ backgroundColor: '#1976d2' }}
-                className="flex m-auto mt-10"
+                style={{ backgroundColor: '#6961c0' }}
+                startIcon={<AddCircleOutlineOutlinedIcon />}
             >
-                <AddCircleOutlineOutlinedIcon sx={{ mr: 1 }} /> Add new note
+                Add new note
             </Button>
 
             <CustomModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
@@ -76,12 +74,11 @@ const AddNote = () => {
                         rows={5}
                         onChange={(e) => setNewNoteValue(e.target.value)}
                     />
+                    <CategorySelect newCategory={newCategory} setNewCategory={setNewCategory} />
                     <RadioSelect setNewColorValue={setNewColorValue} />
                     <Button type="submit" variant="contained" style={{ backgroundColor: '#1976d2' }}>Add</Button>
                 </form>
             </CustomModal>
-
-            <NotesList notes={notes} />
         </Fragment>
 
     )

@@ -5,3 +5,9 @@ export interface INotes {
     note: string,
     color: string
 }
+
+export interface ICategories {
+    id: string,
+    title: string,
+    color: string,
+}

@@ -27,7 +27,7 @@ const RadioSelect: React.FC<RadioSelectProps> = ({ setNewColorValue }) => {
                     sx={{ gap: 2, flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center' }}
                 >
                     {(
-                        ['#ffcf7c', '#fea67e', '#be9efd', '#05d9fe', '#e7f09b', '#fb7878'] as const
+                        ['#ffcf7c', '#fea67e', '#ff8ff0', '#05d9fe', '#e7f09b', '#fb7878'] as const
                     ).map((color) => (
                         <Sheet
                             key={color}

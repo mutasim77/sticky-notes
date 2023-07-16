@@ -1,38 +1,49 @@
 export const getListNotes = () => {
-    if (!localStorage["notes"]) {
-        localStorage["notes"] = "[]";
+    if (!localStorage.getItem('notes')) {
+        localStorage.setItem('notes', '[]');
     }
-
-    let notes = localStorage["notes"];
-    notes = JSON.parse(notes);
+    const notes = JSON.parse(localStorage.getItem('notes'));
     return notes;
-};
+}
 
 export const addNotes = (note) => {
     const notes = getListNotes();
     notes.push(note);
-    localStorage["notes"] = JSON.stringify(notes);
+    localStorage.setItem('notes', JSON.stringify(notes));
+};
+
+export const removeNotes = (id) => {
+    let notes = getListNotes();
+    notes = notes.filter((note) => note.id !== id);
+    localStorage.setItem('notes', JSON.stringify(notes));
+};
+
+export const getListCategories = () => {
+    if (!localStorage.getItem('categories')) {
+        localStorage.setItem('categories', '[]');
+    }
+    const categories = JSON.parse(localStorage.getItem('categories'));
+    return categories;
+}
+
+export const addCategory = (category) => {
+    const categories = getListCategories();
+    categories.push(category);
+    localStorage.setItem('categories', JSON.stringify(categories));
 };
 
 /* 
-
-export const removeEmployee = (id) => {
-    let employees = getListEmployees();
-    employees = employees.filter((employee) => employee.id !== id);
-    localStorage["employees"] = JSON.stringify(employees);
+export const getnoteById = (id) => {
+    const notes = getListNotes();
+    const note = notes.find((note) => note.id === id);
+    return note;
 };
 
-export const getEmployeeById = (id) => {
-    const employees = getListEmployees();
-    const employee = employees.find((employee) => employee.id === id);
-    return employee;
-};
-
-export const editEmployee = (id, newEmployee) => {
-    let employees = getListEmployees();
-    employees = employees.filter((employee) => employee.id !== id);
-    employees.push(newEmployee);
-    localStorage["employees"] = JSON.stringify(employees);
+export const editNote = (id, newnote) => {
+    let notes = getListNotes();
+    notes = notes.filter((note) => note.id !== id);
+    notes.push(newnote);
+    localStorage["notes"] = JSON.stringify(notes);
 };
 
 */
