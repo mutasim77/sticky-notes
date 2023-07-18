@@ -10,7 +10,7 @@ import { getListNotes, getListCategories } from '../../services/localStorage';
 const Notes = () => {
     const [notes, setNotes] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [alignment, setAlignment] = useState<string | null>('');
+    // const [alignment, setAlignment] = useState<string | null>('');
 
     // For notes
     useEffect(() => {
