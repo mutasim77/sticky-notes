@@ -11,6 +11,7 @@ DONE! 2. write my own custom hook for localStorage;
 DONE! 3. Add Date for each time -> take current time from new Date();
 4. Wrie pretty Readme file 
 5. Rewrite localStorage
+first search then send search items to filter by category one;
 
 -----------------Bags-------------------
 1. Do validation while adding new Note;

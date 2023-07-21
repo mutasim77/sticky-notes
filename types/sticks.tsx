@@ -3,7 +3,8 @@ export interface INotes {
     date: string,
     title: string,
     note: string,
-    color: string
+    color: string,
+    category: string
 }
 
 export interface ICategories {
