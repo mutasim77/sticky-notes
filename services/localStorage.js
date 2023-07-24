@@ -1,3 +1,4 @@
+//! NOTES
 export const getListNotes = () => {
     if (!localStorage.getItem('notes')) {
         localStorage.setItem('notes', '[]');
@@ -18,6 +19,7 @@ export const removeNotes = (id) => {
     localStorage.setItem('notes', JSON.stringify(notes));
 };
 
+//! CATEGORIES
 export const getListCategories = () => {
     if (!localStorage.getItem('categories')) {
         localStorage.setItem('categories', '[]');

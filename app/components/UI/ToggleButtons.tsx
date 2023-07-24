@@ -1,6 +1,5 @@
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import React, { useState } from 'react';
 import { styled } from "@mui/material/styles";
 import { ICategories } from '@/types/sticks.jsx';
 
@@ -27,11 +26,11 @@ const ToggleButtons: React.FC<ToggleButtonsProps> = ({ valueCategory, setValueCa
             color='primary'
             size='small'
         >
-            <MuiToggleButton value="All" aria-label="left aligned">
+            <MuiToggleButton value="All">
                 All
             </MuiToggleButton>
             {categories.map((category: ICategories) => (
-                <MuiToggleButton key={category.id} value={category.title} aria-label="left aligned">
+                <MuiToggleButton key={category.id} value={category.title}>
                     {category.title}
                 </MuiToggleButton>
             ))}
@@ -42,7 +41,7 @@ const ToggleButtons: React.FC<ToggleButtonsProps> = ({ valueCategory, setValueCa
 const MuiToggleButton = styled(ToggleButton)({
     "&.Mui-selected, &.Mui-selected:hover": {
         color: "white",
-        backgroundColor: '#6961c0'
+        backgroundColor: '#6961c0',
     }
 });
 
