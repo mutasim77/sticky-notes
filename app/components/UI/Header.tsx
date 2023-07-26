@@ -1,9 +1,11 @@
 import { AppBar, Toolbar, Box, TextField, Avatar, Button } from '@mui/material';
 import { Typography } from '@mui/joy';
 import CustomModal from './CustomModal';
+import SearchIcon from '@mui/icons-material/Search';
 import { FormEventHandler, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import useLocalStorage from '@/app/hooks/useLocalStorage';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
     const [isUserLogined, setIsUserLogined] = useState<boolean>(false);
@@ -34,12 +36,13 @@ const Header = () => {
     return (
         <AppBar component="nav" sx={{ backgroundColor: '#fff', width: '85%', py: 1 }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <TextField placeholder='Search' variant="outlined" sx={{ ml: 10 }} />
+                <div></div>
+                <SearchIcon />
                 <Box sx={{ display: { xs: 'none', sm: 'block' }, color: '#000' }}>
                     {isUserLogined ?
                         (
                             <div onClick={() => setModalOpen(!modalOpen)}>
-                                <Avatar alt="ProfilePicture" src="https://mcdn.wallpapersafari.com/medium/30/24/Vwmyh9.jpg" />
+                                <Avatar sx={{ cursor: 'pointer' }} alt="ProfilePicture" src="https://mcdn.wallpapersafari.com/medium/30/24/Vwmyh9.jpg" />
                             </div>
                         )
                         :
